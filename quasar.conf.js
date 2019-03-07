@@ -47,10 +47,13 @@ module.exports = function (ctx) {
         'QListHeader',
         'QItem',
         'QItemMain',
-        'QItemSide'
+        'QItemSide',
+        'QCollapsible',
+        'QPopover',
       ],
       directives: [
-        'Ripple'
+        'Ripple',
+        'CloseOverlay',
       ],
       // Quasar plugins
       plugins: [
@@ -74,7 +77,7 @@ module.exports = function (ctx) {
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',
-        theme_color: '#027be3',
+        theme_color: '#e371ec',
         icons: [
           {
             'src': 'statics/icons/icon-128x128.png',
