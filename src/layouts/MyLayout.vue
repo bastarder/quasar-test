@@ -2,17 +2,18 @@
   <q-layout view="lHh Lpr lFf">
     <q-layout-header class="no-shadow header">
       <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          @click="leftDrawerMini = !leftDrawerMini"
-          aria-label="Menu"
-        >
-          <q-icon name="menu" />
-        </q-btn>
+        <div class="col-lg-1 col-md-0 col-sm-1 col-xs-12">
+          <q-btn
+            flat
+            dense
+            @click="leftDrawerMini = !leftDrawerMini"
+            aria-label="Menu"
+          >
+            <q-icon name="menu" />
+          </q-btn>
+        </div>
 
-        <div class="nav-header">
+        <div class="nav-header col-lg-6 col-md-7 col-sm-6 col-xs-12" >
           <a>Home</a>
           <a>About</a>
           <a>Services</a>
@@ -20,12 +21,18 @@
             Project
             <q-icon name="expand_more" />
             <q-popover anchor="bottom left" self="top left">
-              <q-list separator link>
+              <q-list class="nav-list" link no-border>
                 <q-item v-close-overlay>
-                  aaaa
+                  Documentation
                 </q-item>
                 <q-item v-close-overlay>
-                  bbbb
+                  Expert Backend
+                </q-item>
+                <q-item v-close-overlay>
+                  Expert FrontEnd
+                </q-item>
+                <q-item v-close-overlay>
+                  Contact Support
                 </q-item>
               </q-list>
             </q-popover>
@@ -33,67 +40,62 @@
           <a>Support</a>
         </div>
 
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+          <div class="nav-header-right">
+            <q-btn 
+              class="dot"
+              flat
+              dense
+              icon="menu"
+            />
+
+            <q-btn 
+              class="dot"
+              flat
+              dense
+              icon="menu"
+            />
+
+            <q-btn 
+              class="dot"
+              flat
+              dense
+              icon="menu"
+            />
+
+          </div>
+        </div>
+
       </q-toolbar>
     </q-layout-header>
 
     <q-layout-drawer
+      side="left"
       class="no-shadow"
       v-model="leftDrawerOpen"
       :mini="leftDrawerMini"
       :mini-width="80"
+      :width="200"
     >
-      <img v-if="!leftDrawerMini" class="logo" src="~assets/logo.png">
-      <img v-else class="logo mini" src="~assets/logosn.png">
-
-      <q-list
-        class="nav-menu"
-        no-border
-        link
-        inset-delimiter
-      >
-        <q-collapsible icon="explore" label="First">
-          <q-item @click.native="openURL('http://quasar-framework.org')">
-            <q-item-side icon="school" />
-            <q-item-main label="Docs" sublabel="quasar-framework.org" />
-          </q-item>
-          <q-item @click.native="openURL('http://quasar-framework.org')">
-            <q-item-side icon="school" />
-            <q-item-main label="Docs" sublabel="quasar-framework.org" />
-          </q-item>
-        </q-collapsible>
-        <q-item @click.native="openURL('http://quasar-framework.org')">
-          <q-item-side icon="school" />
-          <q-item-main label="Docs" sublabel="quasar-framework.org" />
-        </q-item>
-        <q-item @click.native="openURL('https://github.com/quasarframework/')">
-          <q-item-side icon="code" />
-          <q-item-main label="GitHub" sublabel="github.com/quasarframework" />
-        </q-item>
-        <q-item @click.native="openURL('https://discord.gg/5TDhbDg')">
-          <q-item-side icon="chat" />
-          <q-item-main label="Discord Chat Channel" sublabel="https://discord.gg/5TDhbDg" />
-        </q-item>
-        <q-item @click.native="openURL('http://forum.quasar-framework.org')">
-          <q-item-side icon="record_voice_over" />
-          <q-item-main label="Forum" sublabel="forum.quasar-framework.org" />
-        </q-item>
-        <q-item @click.native="openURL('https://twitter.com/quasarframework')">
-          <q-item-side icon="rss feed" />
-          <q-item-main label="Twitter" sublabel="@quasarframework" />
-        </q-item>
-      </q-list>
+      <sider-bar :leftDrawerMini="leftDrawerMini"></sider-bar>
     </q-layout-drawer>
 
     <q-page-container>
+      <search-bar />
       <router-view />
     </q-page-container>
   </q-layout>
 </template>
 
 <script>
-import { openURL } from 'quasar'
+import siderbar from '../components/side-bar.vue'
+import searchbar from '../components/search-bar.vue'
 
 export default {
+  components: {
+    'sider-bar': siderbar,
+    'search-bar': searchbar,
+  },
   name: 'MyLayout',
   data () {
     return {
@@ -103,7 +105,6 @@ export default {
     }
   },
   methods: {
-    openURL
   },
   computed: {
   }
@@ -113,13 +114,27 @@ export default {
 <style lang="stylus">
   @import '~variables'
 
-  $header-height = 80px
-
+  $header-height = 60px
+  .nav-header-right
+    float right
   .nav-header
     a
       display inline-block
-      margin 0 20px
+      padding 20px
+      font-size 14px
       user-select none
+      font-weight bold
+
+  .dot:before
+    content ''
+    display inline-block
+    width 5px
+    height 5px
+    border-radius 50%
+    background white
+    position absolute
+    top 0
+    right 0
 
   .no-shadow
     .q-layout-drawer-delimiter
@@ -127,6 +142,9 @@ export default {
 
   .q-toolbar
     height $header-height
+    padding 0 15px
+    line-height 20px
+    background #006df0 !important
 
   .logo
     background-color white
@@ -137,18 +155,26 @@ export default {
   .mini
     padding 16px
 
-  .q-layout-page-container
-    background: #f6f8fa;
+  .nav-list
+    .q-item:hover
+      background #f6f8fa
+    .q-item
+      color #303030
+      font-size 14px
+
 </style>
 
 
 <style>
+  body{
+    height: 100%;
+    font-family: roboto,sans-serif;
+    font-weight: 400;
+    background: #f6f8fa;
+  }
+
   .q-layout-drawer{
     overflow: hidden;
-    width: 200px;
   }
-  .nav-menu{
-    height: 100vh;
-    overflow-y: scroll;
-  }
+
 </style>

@@ -50,6 +50,10 @@ module.exports = function (ctx) {
         'QItemSide',
         'QCollapsible',
         'QPopover',
+        'QScrollArea',
+        'QBreadcrumbs',
+        'QBreadcrumbsEl',
+        'QSearch',
       ],
       directives: [
         'Ripple',
@@ -62,8 +66,8 @@ module.exports = function (ctx) {
       // iconSet: ctx.theme.mat ? 'material-icons' : 'ionicons'
       // i18n: 'de' // Quasar language
     },
-    // animations: 'all' --- includes all animations
-    animations: [],
+    animations: 'all', //--- includes all animations
+    // animations: [],
     ssr: {
       pwa: false
     },
