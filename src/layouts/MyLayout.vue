@@ -1,12 +1,13 @@
 <template>
   <q-layout view="lHh Lpr lFf">
+    <q-window-resize-observable @resize="onResize" />
     <q-layout-header class="no-shadow header">
       <q-toolbar>
         <div class="col-lg-1 col-md-0 col-sm-1 col-xs-12">
           <q-btn
             flat
             dense
-            @click="leftDrawerMini = !leftDrawerMini"
+            @click="toggleBar()"
             aria-label="Menu"
           >
             <q-icon name="menu" />
@@ -99,12 +100,27 @@ export default {
   name: 'MyLayout',
   data () {
     return {
-      // leftDrawerOpen: this.$q.platform.is.desktop,
-      leftDrawerOpen: true,
+      leftDrawerOpen: this.$q.platform.is.desktop,
       leftDrawerMini: false,
+      width: 0,
     }
   },
   methods: {
+    toggleBar : function() {
+      console.log(this.$q.platform.is.desktop)
+      if(this.width <= 992){
+        this.leftDrawerOpen = !this.leftDrawerOpen;
+      }else{
+        this.leftDrawerMini = !this.leftDrawerMini
+      }
+    },
+    onResize : function({width}) {
+      console.log(width)
+      this.width = width;
+      if(width > 992){
+        setTimeout(() => this.leftDrawerOpen = true, 1000);
+      }
+    }
   },
   computed: {
   }
@@ -178,3 +194,5 @@ export default {
   }
 
 </style>
+
+

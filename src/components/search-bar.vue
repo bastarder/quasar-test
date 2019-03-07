@@ -5,9 +5,9 @@
         <div class="row">
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <q-search 
-              placeholder="Search..."/>
+              placeholder="Search..." value=""/>
           </div>
-          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-0 breadcrumb">
             <q-breadcrumbs>
               <q-breadcrumbs-el label="Home" />
               <q-breadcrumbs-el label="Dashboard V.1" />
@@ -37,7 +37,9 @@ export default {
     height 74px
   .q-breadcrumbs
     float right
-  .q-input
-    width: 200px;
+  // .q-input
+  //   width: 200px
+  .breadcrumb
+    overflow hidden
 </style>
 

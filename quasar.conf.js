@@ -54,6 +54,7 @@ module.exports = function (ctx) {
         'QBreadcrumbs',
         'QBreadcrumbsEl',
         'QSearch',
+        'QWindowResizeObservable',
       ],
       directives: [
         'Ripple',
