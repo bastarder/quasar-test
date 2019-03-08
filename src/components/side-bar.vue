@@ -76,34 +76,22 @@
             </q-item>
           </q-collapsible>
 
-          <q-popover
-            class="nav-bar"
-            anchor="top right"
-            self="top left"
-            >
-            <div>12312312312</div>
-            <div>12312312312</div>
-            <div>12312312312</div>
-            <div>12312312312</div>
-            <div>12312312312</div>
-          </q-popover>
+          <div>
+            <q-popover
+              v-model="miniStatus.professor"
+              anchor="top right"
+              self="top left"
+              >
+              <div>12312312312</div>
+              <div>12312312312</div>
+              <div>12312312312</div>
+              <div>12312312312</div>
+              <div>12312312312</div>
+            </q-popover>
+          </div>
 
         </div>
 
-        <q-collapsible icon="explore" label="Students" collapse-icon="expand_more">
-          <q-item @click.native="openURL('http://quasar-framework.org')">
-            <q-item-main label="All Students"/>
-          </q-item>
-          <q-item @click.native="openURL('http://quasar-framework.org')">
-            <q-item-main label="Add Student"/>
-          </q-item>
-          <q-item @click.native="openURL('http://quasar-framework.org')">
-            <q-item-main label="Edit Student"/>
-          </q-item>
-          <q-item @click.native="openURL('http://quasar-framework.org')">
-            <q-item-main label="Student Profile"/>
-          </q-item>
-        </q-collapsible>
 
       </q-list>
     </q-scroll-area>
