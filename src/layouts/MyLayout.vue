@@ -1,15 +1,11 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-window-resize-observable @resize="onResize" />
+
     <q-layout-header class="no-shadow header">
       <q-toolbar>
         <div class="col-lg-1 col-md-0 col-sm-1 col-xs-12">
-          <q-btn
-            flat
-            dense
-            @click="toggleBar()"
-            aria-label="Menu"
-          >
+          <q-btn flat dense @click="toggleBar()" aria-label="Menu">
             <q-icon name="menu" />
           </q-btn>
         </div>
@@ -23,18 +19,10 @@
             <q-icon name="expand_more" />
             <q-popover anchor="bottom left" self="top left">
               <q-list class="nav-list" link no-border>
-                <q-item v-close-overlay>
-                  Documentation
-                </q-item>
-                <q-item v-close-overlay>
-                  Expert Backend
-                </q-item>
-                <q-item v-close-overlay>
-                  Expert FrontEnd
-                </q-item>
-                <q-item v-close-overlay>
-                  Contact Support
-                </q-item>
+                <q-item v-close-overlay>Documentation</q-item>
+                <q-item v-close-overlay>Expert Backend</q-item>
+                <q-item v-close-overlay>Expert FrontEnd</q-item>
+                <q-item v-close-overlay>Contact Support</q-item>
               </q-list>
             </q-popover>
           </a>
@@ -43,27 +31,8 @@
 
         <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
           <div class="nav-header-right">
-            <q-btn 
-              class="dot"
-              flat
-              dense
-              icon="menu"
-            />
-
-            <q-btn 
-              class="dot"
-              flat
-              dense
-              icon="menu"
-            />
-
-            <q-btn 
-              class="dot"
-              flat
-              dense
-              icon="menu"
-            />
-
+            <q-btn class="dot" flat dense icon="menu"/>
+            <q-btn class="dot" flat dense icon="menu"/>
           </div>
         </div>
 
@@ -78,13 +47,14 @@
       :mini-width="80"
       :width="200"
     >
-      <sider-bar :leftDrawerMini="leftDrawerMini"></sider-bar>
+      <sider-bar :leftDrawerMini="leftDrawerMini" />
     </q-layout-drawer>
 
     <q-page-container>
       <search-bar />
       <router-view />
     </q-page-container>
+
   </q-layout>
 </template>
 
@@ -106,33 +76,29 @@ export default {
     }
   },
   methods: {
-    toggleBar : function() {
-      console.log(this.$q.platform.is.desktop)
+    toggleBar: function() {
       if(this.width <= 992){
         this.leftDrawerOpen = !this.leftDrawerOpen;
       }else{
         this.leftDrawerMini = !this.leftDrawerMini
       }
     },
-    onResize : function({width}) {
-      console.log(width)
+    onResize: function({ width }) {
       this.width = width;
       if(width > 992){
         setTimeout(() => this.leftDrawerOpen = true, 1000);
       }
     }
   },
-  computed: {
-  }
 }
 </script>
 
 <style lang="stylus">
-  @import '~variables'
-
   $header-height = 60px
+
   .nav-header-right
     float right
+
   .nav-header
     a
       display inline-block
@@ -178,21 +144,12 @@ export default {
       color #303030
       font-size 14px
 
-</style>
+  .q-layout-drawer
+    overflow hidden
 
-
-<style>
-  body{
-    height: 100%;
-    font-family: roboto,sans-serif;
-    font-weight: 400;
-    background: #f6f8fa;
-  }
-
-  .q-layout-drawer{
-    overflow: hidden;
-  }
+  body
+    height 100%
+    font-weight 400
+    background #f6f8fa
 
 </style>
-
-
